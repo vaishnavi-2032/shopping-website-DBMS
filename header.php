@@ -172,7 +172,7 @@ session_start();
 						<!-- LOGO -->
 						<div class="col-md-6">
 							<div class="header-logo">
-								<a href="#" class="logo">
+								<a href="http://localhost/myproject/shopping-website-DBMS/index.php" class="logo">
 								<font style="font-style:normal; font-size: 33px;color: aliceblue;font-family: serif">
                                         Online Shop
                                     </font>
@@ -230,15 +230,7 @@ session_start();
 			<!-- /MAIN HEADER -->
 		</header>
 		<!-- /HEADER -->
-		<nav id='navigation'>
-			<!-- container -->
-            <div class="container" id="get_category_home">
-                
-            </div>
-				<!-- responsive-nav -->
-				
-			<!-- /container -->
-		</nav>
+		
             
 
 		<!-- NAVIGATION -->
