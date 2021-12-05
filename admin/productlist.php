@@ -64,8 +64,9 @@ include "topheader.php";
                         echo "<tr><td><img src='../product_images/$image' style='width:50px; height:50px; border:groove #000'></td><td>$product_name</td>
                         <td>$price</td>
                         <td>
+                        
+                        <a class=' btn btn-success' href='productlist.php?product_id=$product_id&action=delete'>Delete</a>
 
-                        <a class=' btn btn-success' href='clothes_list.php?product_id=$product_id&action=delete'>Delete</a>
                         </td></tr>";
                         }
 

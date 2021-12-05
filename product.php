@@ -1,6 +1,8 @@
 <?php
 include "header.php";
 ?>
+
+
 		<!-- /BREADCRUMB -->
 		<script type="text/javascript">
 			jQuery(document).ready(function($) {
@@ -120,6 +122,11 @@ include "header.php";
 									<!-- FlexSlider -->
 									
 									<?php 
+									$pro_price1 = $row['product_price'];
+									$old_price1 = $pro_price1+1200;
+									$discount = ($old_price1-$pro_price1);
+									$dis_per = ($discount/$old_price1)*100;
+									$dis_per = round($dis_per);
 									echo '
 									
                                     
@@ -128,13 +135,12 @@ include "header.php";
 						<div class="product-details">
 							<h2 class="product-name">'.$row['product_title'].'</h2>
 							<div>
-								<h3 class="product-price">$'.$row['product_price'].'</h3>
+								<h3 class="product-price">₹'.$pro_price1.' &nbsp;</h3><del class="old-price"><b>₹'.$old_price1.'</b></del> <span>&nbsp;('.$dis_per.'% OFF) &nbsp;&nbsp;<b>Free Delivery</b></span>
 							</div>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
 							<div class="product-options">
 							</div>
-
 							<div class="add-to-cart">
 								</div>
 								<div class="btn-group" style="margin-left: 25px; margin-top: 15px">
@@ -234,7 +240,7 @@ include "header.php";
                     include 'db.php';
 								$product_id = $_GET['p'];
                     
-					$product_query = "SELECT * FROM products WHERE product_id BETWEEN $product_id AND $product_id+1";
+					$product_query = "SELECT * FROM products WHERE product_id BETWEEN $product_id AND $product_id+3";
                 $run_query = mysqli_query($con,$product_query);
                 if(mysqli_num_rows($run_query) > 0){
 
@@ -243,6 +249,7 @@ include "header.php";
                         $pro_brand = $row['product_brand'];
                         $pro_title = $row['product_title'];
                         $pro_price = $row['product_price'];
+						$old_price = $pro_price+1200;
                         $pro_image = $row['product_image'];
                         echo "
 				
@@ -255,7 +262,7 @@ include "header.php";
 									<div class='product-body'>
 										
 										<h3 class='product-name header-cart-item-name'><a href='product.php?p=$pro_id'>$pro_title</a></h3>
-										<h4 class='product-price header-cart-item-info'>$pro_price<del class='product-old-price'>$990.00</del></h4>
+										<h4 class='product-price header-cart-item-info'>₹$pro_price <del class='product-old-price'>₹$old_price</del></h4>
 									</div>
 									<div class='add-to-cart'>
 										<button pid='$pro_id' id='product' class='add-to-cart-btn block2-btn-towishlist' href='#'><i class='fa fa-shopping-cart'></i> add to cart</button>

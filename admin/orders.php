@@ -8,8 +8,7 @@ if(isset($_GET['action']) && $_GET['action']!="" && $_GET['action']=='delete')
 {
 $order_id=$_GET['order_id'];
 
-/*this is delet query*/
-mysqli_query($con,"delete from orders where order_id='$order_id'")or die("delete query is incorrect...");
+
 } 
 
 ///pagination
@@ -40,19 +39,17 @@ include "topheader.php";
                 <div class="table-responsive ps">
                   <table class="table table-hover tablesorter " id="">
                     <thead class=" text-primary">
-                      <tr><th>Customer Name</th><th>Products</th><th>Contact | Email</th><th>Address</th><th>Details</th><th>Shipping</th><th>Time</th>
+                      <tr><th>Customer Name</th><th>Email</th><th>Address</th><th>Total Products</th><th>Amount</th>
                     </tr></thead>
                     <tbody>
                       <?php 
-                        $result=mysqli_query($con,"select order_id, product_title, first_name, mobile, email, address1, address2, product_price,address2, qty from orders,products,user_info where orders.product_id=products.product_id and user_info.user_id=orders.user_id Limit $page1,10")or die ("query 1 incorrect.....");
+                        $result=mysqli_query($con,"select order_id,f_name, email, address,prod_count,total_amt from orders_info Limit $page1,10")or die ("query 1 incorrect.....");
 
-                        while(list($order_id,$p_names,$cus_name,$contact_no,$email,$address,$country,$details,$zip_code,$time,$quantity)=mysqli_fetch_array($result))
+                        while(list($order_id,$cus_name,$email,$address,$p_cnt,$amnt)=mysqli_fetch_array($result))
                         {	
-                        echo "<tr><td>$cus_name</td><td>$p_names</td><td>$email<br>$contact_no</td><td>$address<br>ZIP: $zip_code<br>$country</td><td>$details</td><td>$quantity</td><td>$time</td>
+                        echo "<tr><td>$cus_name</td><td>$email</td><td>$address</td><td>$p_cnt</td><td>$amnt</td>
 
-                        <td>
-                        <a class=' btn btn-danger' href='orders.php?order_id=$order_id&action=delete'>Delete</a>
-                        </td></tr>";
+                        </tr>";
                         }
                         ?>
                     </tbody>

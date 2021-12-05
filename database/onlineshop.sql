@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 04, 2021 at 09:09 AM
+-- Generation Time: Dec 05, 2021 at 01:58 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.30
 
@@ -70,7 +70,7 @@ INSERT INTO `brands` (`brand_id`, `brand_title`) VALUES
 (3, 'Apple'),
 (4, 'motorolla'),
 (5, 'LG'),
-(6, 'Cloth Brand');
+(6, 'others');
 
 -- --------------------------------------------------------
 
@@ -91,23 +91,23 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `p_id`, `ip_add`, `user_id`, `qty`) VALUES
-(148, 72, '::1', -1, 1),
-(149, 73, '::1', -1, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `orders`
---
-
-CREATE TABLE `orders` (
-  `order_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `qty` int(11) NOT NULL,
-  `trx_id` varchar(255) NOT NULL,
-  `p_status` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+(6, 26, '::1', 4, 1),
+(9, 10, '::1', 7, 1),
+(10, 11, '::1', 7, 1),
+(11, 45, '::1', 7, 1),
+(44, 5, '::1', 3, 0),
+(46, 2, '::1', 3, 0),
+(48, 72, '::1', 3, 0),
+(49, 60, '::1', 8, 1),
+(50, 61, '::1', 8, 1),
+(51, 1, '::1', 8, 1),
+(52, 5, '::1', 9, 1),
+(53, 2, '::1', 14, 1),
+(54, 3, '::1', 14, 1),
+(55, 5, '::1', 14, 1),
+(56, 1, '::1', 9, 1),
+(57, 2, '::1', 9, 1),
+(71, 61, '127.0.0.1', -1, 1);
 
 -- --------------------------------------------------------
 
@@ -132,6 +132,13 @@ CREATE TABLE `orders_info` (
   `cvv` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `orders_info`
+--
+
+INSERT INTO `orders_info` (`order_id`, `user_id`, `f_name`, `email`, `address`, `city`, `state`, `zip`, `cardname`, `cardnumber`, `expdate`, `prod_count`, `total_amt`, `cvv`) VALUES
+(3, 30, 'Vaishnavi z', 'vaishnavi@gmail.com', 'Hadapsar', 'Pune', 'Maharashtra', 411028, 'Vaishnavi', '4567 8912 3', '12/22', 2, 10500, 123);
+
 -- --------------------------------------------------------
 
 --
@@ -145,6 +152,14 @@ CREATE TABLE `order_products` (
   `qty` int(15) DEFAULT NULL,
   `amt` int(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order_products`
+--
+
+INSERT INTO `order_products` (`order_pro_id`, `order_id`, `product_id`, `qty`, `amt`) VALUES
+(92, 3, 71, 1, 5000),
+(93, 3, 74, 1, 5500);
 
 -- --------------------------------------------------------
 
@@ -176,26 +191,17 @@ INSERT INTO `products` (`product_id`, `product_brand`, `product_title`, `product
 (7, 1, 'Laptop Pavillion', 50000, 'Laptop Hp Pavillion', 'laptop_PNG5930.png', 'Laptop Hp Pavillion'),
 (8, 4, 'Sony', 40000, 'Sony Mobile', '530201353846AM_635_sony_xperia_z.png', 'sony mobile'),
 (9, 3, 'iPhone New', 12000, 'iphone', 'iphone-hd-png-iphone-apple-png-file-550.png', 'iphone apple mobile'),
-(33, 2, 'Refrigerator', 35000, 'Refrigerator', 'CT_WM_BTS-BTC-AppliancesHome_20150723.jpg', 'refrigerator samsung'),
-(34, 4, 'Emergency Light', 1000, 'Emergency Light', 'emergency light.JPG', 'emergency light'),
-(36, 5, 'Iron', 1500, 'gj', 'iron.JPG', 'iron'),
-(37, 5, 'LED TV', 20000, 'LED TV', 'images (4).jpg', 'led tv lg'),
-(39, 5, 'Mixer Grinder', 2500, 'Mixer Grinder', 'singer-mixer-grinder-mg-46-medium_4bfa018096c25dec7ba0af40662856ef.jpg', 'Mixer Grinder'),
 (45, 2, 'Samsung Galaxy Note 3', 10000, '0', 'samsung_galaxy_note3_note3neo.JPG', 'samsung galaxy Note 3 neo'),
 (46, 2, 'Samsung Galaxy Note 3', 10000, '', 'samsung_galaxy_note3_note3neo.JPG', 'samsung galxaxy note 3 neo'),
-(47, 6, 'Laptop', 650, 'nbk', 'product01.png', 'Dell Laptop'),
 (48, 7, 'Headphones', 250, 'Headphones', 'product05.png', 'Headphones Sony'),
 (49, 7, 'Headphones', 250, 'Headphones', 'product05.png', 'Headphones Sony'),
 (71, 2, 'Samsung galaxy s7', 5000, 'Samsung galaxy s7', 'product07.png', 'samsung mobile electronics'),
-(72, 2, 'sony Headphones', 3500, 'sony Headphones', 'product02.png', 'sony Headphones electronics gadgets'),
-(73, 2, 'samsung Headphones', 3500, 'samsung Headphones', 'product05.png', 'samsung Headphones electronics gadgets'),
 (74, 1, 'HP i5 laptop', 5500, 'HP i5 laptop', 'product01.png', 'HP i5 laptop electronics'),
 (75, 1, 'HP i7 laptop 8gb ram', 5500, 'HP i7 laptop 8gb ram', 'product03.png', 'HP i7 laptop 8gb ram electronics'),
 (76, 5, 'sony note 6gb ram', 4500, 'sony note 6gb ram', 'product04.png', 'sony note 6gb ram mobile electronics'),
 (77, 4, 'MSV laptop 16gb ram NVIDEA Graphics', 5499, 'MSV laptop 16gb ram', 'product06.png', 'MSV laptop 16gb ram NVIDEA Graphics electronics'),
 (78, 5, 'dell laptop 8gb ram intel integerated Graphics', 4579, 'dell laptop 8gb ram intel integerated Graphics', 'product08.png', 'dell laptop 8gb ram intel integerated Graphics electronics'),
-(79, 2, 'camera with 3D pixels', 2569, 'camera with 3D pixels', 'product09.png', 'camera with 3D pixels camera electronics gadgets'),
-(82, 2, 'Samsung tab s6', 35699, 'samsung product', '1638605061_samsung-sm-p615nzaainu-original-imafskyngvk7phfk.jpeg', 'samsung ,tab');
+(80, 1, 'ytrfdkjsd', 12343, 'sdfhgh', '1542455446_thythtf .jpeg', 'dfgh');
 
 -- --------------------------------------------------------
 
@@ -219,19 +225,11 @@ CREATE TABLE `user_info` (
 --
 
 INSERT INTO `user_info` (`user_id`, `first_name`, `last_name`, `email`, `password`, `mobile`, `address1`, `address2`) VALUES
-(24, 'newuser', 'user', 'newuser@gmail.com', 'newuser@123', '9535688928', 'Bangalore', 'Kumbalagodu'),
-(25, 'otheruser', 'user', 'otheruser@gmail.com', 'otheruser@123', '9535688928', 'Bangalore', 'Kumbalagodu'),
-(26, 'test', 'test', 'tes1t@gmail.com', '123456789', '9994949949', 'test', 'testa');
-
---
--- Triggers `user_info`
---
-DELIMITER $$
-CREATE TRIGGER `after_user_info_insert` AFTER INSERT ON `user_info` FOR EACH ROW BEGIN 
-INSERT INTO user_info_backup VALUES(new.user_id,new.first_name,new.last_name,new.email,new.password,new.mobile,new.address1,new.address2);
-END
-$$
-DELIMITER ;
+(26, 'test', 'test', 'test@gmail.com', '123456789', '9994949949', 'test', 'testa'),
+(27, 'Vidya', 'S', 'vidya@gmail.com', 'vidya@123', '7894561237', 'pune', 'Pune'),
+(28, 'Ajinkya', 'S', 'ajinkya@gmail.com', 'ajinkya@123', '4567891235', 'Pune', 'Pune'),
+(30, 'Vaishnavi', 'z', 'vaishnavi@gmail.com', 'vaishnavi@123', '1234567890', 'Hadapsar', 'Pune'),
+(31, 'Tejas', 'S', 'tejas@gmail.com', 'tejas@123', '9874561234', 'pune', 'pune');
 
 --
 -- Indexes for dumped tables
@@ -254,12 +252,6 @@ ALTER TABLE `brands`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`order_id`);
 
 --
 -- Indexes for table `orders_info`
@@ -308,13 +300,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
-
---
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
 -- AUTO_INCREMENT for table `orders_info`
@@ -326,19 +312,19 @@ ALTER TABLE `orders_info`
 -- AUTO_INCREMENT for table `order_products`
 --
 ALTER TABLE `order_products`
-  MODIFY `order_pro_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `order_pro_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- Constraints for dumped tables
